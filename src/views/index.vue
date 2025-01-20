@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-  <div class="index">
+  <div class="phone-generator">
     <textarea placeholder="电话前三位" v-model="q3" rows="1"></textarea>
     <br>
     <textarea placeholder="电话中间4位" v-model="q4" rows="1" class="q4"></textarea>
@@ -29,8 +29,14 @@ const q3 = ref('')
 const q4 = ref('')
 const h2 = ref('')
 const generatedNumbers = ref([])
+const isLoading = ref(false)
+const errorMessage = ref('')
 
 function generatePhone() {
+  if (!validateInputs()) return
+  
+  isLoading.value = true
+  errorMessage.value = ''
   generatedNumbers.value = [] // 清空之前的生成结果
 
   // 将 q4 的值按回车符分割成数组
@@ -58,6 +64,30 @@ function generatePhone() {
   }
 }
 
+function validateInputs() {
+  if (!q3.value || !q4.value || !h2.value) {
+    errorMessage.value = '请填写所有输入框'
+    return false
+  }
+  
+  if (!/^\d{3}$/.test(q3.value)) {
+    errorMessage.value = '前三位必须是3位数字'
+    return false
+  }
+  
+  if (!/^\d{4}(\n\d{4})*$/.test(q4.value)) {
+    errorMessage.value = '中间4位必须是4位数字，多组用换行分隔'
+    return false
+  }
+  
+  if (!/^\d{2}$/.test(h2.value)) {
+    errorMessage.value = '后两位必须是2位数字'
+    return false
+  }
+  
+  return true
+}
+
 function exportToExcel() {
   // 生成符合模板的数据
   const data = [
@@ -75,7 +105,16 @@ function exportToExcel() {
 </script>
 
 <style scoped>
-.index {
+:root {
+  --primary-color: #4CAF50;
+  --primary-hover: #45a049;
+  --error-color: #ff4444;
+  --text-color: #333;
+  --border-color: #ccc;
+  --transition-speed: 0.3s;
+}
+
+.phone-generator {
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -84,7 +123,7 @@ function exportToExcel() {
   box-sizing: border-box;
 }
 
-.index textarea {
+.phone-generator textarea {
   display: block;
   margin-bottom: 10px;
   width: 100%;
@@ -97,19 +136,19 @@ function exportToExcel() {
   overflow: hidden; /* 隐藏滚动条 */
 }
 
-.index textarea:focus {
+.phone-generator textarea:focus {
   outline: none; /* 去掉聚焦时的默认边框 */
   border-color: #4CAF50; /* 聚焦时的边框颜色 */
 }
 
-.index textarea.q4 {
+.phone-generator textarea.q4 {
   background-color: #f9f9f9; /* 特定背景颜色 */
   max-height: 400px; /* 最大高度 */
   height: 150px; /* 高度撑满 */
   overflow-y: auto; /* 显示滚动条 */
 }
 
-.index button {
+.phone-generator button {
   display: block;
   width: 100%;
   padding: 10px;
@@ -123,7 +162,7 @@ function exportToExcel() {
   margin-bottom: 10px;
 }
 
-.index button:hover {
+.phone-generator button:hover {
   background-color: #45a049;
 }
 
@@ -142,21 +181,32 @@ function exportToExcel() {
   padding: 5px 0; /* 每个电话号码之间的间距 */
   }
 
+.error-message {
+  color: var(--error-color);
+  margin: 10px 0;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  margin: 20px 0;
+}
+
 @media (max-width: 400px) {
-  }
-  .index textarea,
-  .index button {
+  .phone-generator textarea,
+  .phone-generator button {
     font-size: 14px;
   }
-  .index textarea.q4 {
-    font-size: 25px; /* 响应式字体大小 */
-    max-height: 400px; /* 响应式高度 */
-    height: 150px; /* 响应式高度 */
-    overflow-y: auto; /* 响应式滚动条 */
+  
+  .phone-generator textarea.q4 {
+    font-size: 16px;
+    max-height: 300px;
+    height: 120px;
   }
-
-  .index textarea {
-    font-size: 25px;
+  
+  .phone-generator textarea {
+    font-size: 16px;
+  }
 }
 
 </style>

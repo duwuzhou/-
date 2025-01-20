@@ -16,6 +16,11 @@ const routes = [
           path: '/RouterView/index',
           name: 'Index',
           component: () => import('@/views/index.vue'),
+        },
+        {
+          path: '/RouterView/index1',
+          name: 'Index1',
+          component: () => import('@/views/index1.vue'),
         }
       ]
   },
