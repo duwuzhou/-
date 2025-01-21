@@ -5,6 +5,7 @@
       <h1>电话生成程序</h1>
       <p class="subtitle">输入电话号码，点击生成即可</p>
       <p><a href="https://telphone.cn/">查询号段网站</a> </p>
+      <p><a href="https://tool.lu/">ip查询工具</a></p>
     </header>
     
     <main class="main-content">
