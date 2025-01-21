@@ -6,6 +6,8 @@
       <p class="subtitle">输入电话号码，点击生成即可</p>
       <p><a href="https://telphone.cn/">查询号段网站</a> </p>
       <p><a href="https://tool.lu/">ip查询工具</a></p>
+      <p><a href="https://www.iplocation.net/">ip定位工具</a></p>
+      <p><a href="https://qb.heikebook.com/index"><q>q绑定查询</q></a></p>
     </header>
     
     <main class="main-content">
