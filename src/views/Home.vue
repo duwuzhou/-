@@ -7,7 +7,7 @@
       <p><a href="https://telphone.cn/">查询号段网站</a> </p>
       <p><a href="https://tool.lu/">ip查询工具</a></p>
       <p><a href="https://www.iplocation.net/">ip定位工具</a></p>
-      <p><a href="https://qb.heikebook.com/index"><q>q绑定查询</q></a></p>
+      <p><a href="https://qb.heikebook.com/index">q绑定查询</a></p>
     </header>
     
     <main class="main-content">
