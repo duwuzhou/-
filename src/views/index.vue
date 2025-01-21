@@ -91,8 +91,8 @@ function validateInputs() {
 function exportToExcel() {
   // 生成符合模板的数据
   const data = [
-    ['姓名', 'QQ号', '家庭手机'], // 表头
-    ...generatedNumbers.value.map(number => [number, '', number]) // 数据行
+    ['姓名','手机'], // 表头
+    ...generatedNumbers.value.map(number => [number, number]) // 数据行
   ]
   // 将数据转换为 Excel 工作表
   const ws = XLSX.utils.aoa_to_sheet(data)
